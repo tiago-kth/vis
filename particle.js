@@ -81,10 +81,25 @@ class Particle {
         this.x += vx * this.speed;
         this.y += vy * this.speed;
 
-        if (this.x >= this.xmax) this.x = 1;
-        if (this.x <= 0) this.x = this.xmax-1;
-        if (this.y >= this.ymax) this.y = 1;
-        if (this.y <= 0) this.y = this.ymax-1;
+        if (this.x >= this.xmax) {
+            this.x = 1;
+            this.x0 = this.x;
+        }
+
+        if (this.x <= 0) {
+            this.x = this.xmax-1;
+            this.x0 = this.x
+        }
+
+        if (this.y >= this.ymax) {
+            this.y = 1;
+            this.y0 = this.y;
+        }
+
+        if (this.y <= 0) {
+            this.y = this.ymax-1;
+            this.y0 = this.y;
+        }
 
     }
 
@@ -98,13 +113,14 @@ class Particle {
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.globalAlpha = this.alpha;
-        //cv.ctx.moveTo(this.x0, this.y0);
-        ctx.arc(m + this.x, m + this.y, this.r, 0, this.arc_length);//Math.PI * 2);
-        //cv.ctx.lineTo(this.x, this.y);
-        ctx.fill();
-        //cv.ctx.strokeStyle = 'white';
+        cv.ctx.moveTo(m + this.x0, m + this.y0);
+        //ctx.arc(m + this.x, m + this.y, this.r, 0, this.arc_length);//Math.PI * 2);
+        cv.ctx.lineTo(m + this.x, m +this.y);
+        //ctx.arc(m + this.x, m + this.y, this.r, 0, this.arc_length);//Math.PI * 2);
+        //ctx.fill();
+        cv.ctx.strokeStyle = this.color;
         //cv.ctx.filter = "blur(1px)";
-        //cv.ctx.stroke();
+        cv.ctx.stroke();
         cv.ctx.closePath();
         //cv.ctx.stroke();
 

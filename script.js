@@ -14,7 +14,7 @@ const params = {
 
 class Canvas {
 
-    cell_size = 50;
+    cell_size = 20;
     W;
     H;
     w;
