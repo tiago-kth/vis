@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="controls">
+
+        <div class="wrapper-input">
+            <input type="range" id="DIFFUSION" name="DIFFUSION" min="0" step="0.01" max="1">
+            <span data-display="DIFFUSION"></span>
+            <label for="DIFFUSION">Diffusion</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="VISCOSITY" name="VISCOSITY" min="0" step="0.005" max="1">
+            <span data-display="VISCOSITY"></span>
+            <label for="VISCOSITY">Viscosity</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="TIME_STEP" name="TIME_STEP" min="0" step="0.000001" max="0.0001">
+            <span data-display="TIME_STEP"></span>
+            <label for="TIME_STEP">Time step (dt)</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="SPEED_INCREMENT" name="SPEED_INCREMENT" min="0" step="10" max="1000">
+            <span data-display="SPEED_INCREMENT"></span>
+            <label for="SPEED_INCREMENT">Speed increment</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="DENSITY_INCREMENT" name="DENSITY_INCREMENT" min="0" step="10" max="1000">
+            <span data-display="DENSITY_INCREMENT"></span>
+            <label for="DENSITY_INCREMENT">Density increment</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="N_PARTICLES" name="N_PARTICLES" min="0" step="100" max="3000">
+            <span data-display="N_PARTICLES"></span>
+            <label for="N_PARTICLES">Number of particles</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="PARTICLE_RADIUS" name="PARTICLE_RADIUS" min="1" step=".5" max="20">
+            <span data-display="PARTICLE_RADIUS"></span>
+            <label for="PARTICLE_RADIUS">Radius of each particle</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="SPREAD" name="SPREAD" min="1" step="1" max="20">
+            <span data-display="SPREAD"></span>
+            <label for="SPREAD">Spread of the created particles (in number of grid cells)</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="DECAY_INCREMENT" name="DECAY_INCREMENT" min="100" step="50" max="1000">
+            <span data-display="DECAY_INCREMENT"></span>
+            <label for="DECAY_INCREMENT">The inverse of the fade rate increment in the random generator</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="range" id="MIN_DECAY" name="MIN_DECAY" min="10" step="10" max="100">
+            <span data-display="MIN_DECAY"></span>
+            <label for="MIN_DECAY">The inverse of minimum fade rate</label>
+        </div>
+
+        <div class="wrapper-input">
+            <input type="color" id="PARTICLE_COLOR" name="PARTICLE_COLOR" value="#00FFFF">
+            <span data-display="PARTICLE_COLOR"></span>
+            <label for="PARTICLE_COLOR">Particle color</label>
+        </div>
+
+        <button class="btn-display-vector">Display vector field</button>
+        <button class="btn-display-density">Display density</button>
+
+    </div>
+    
+    <canvas></canvas>
+
+    <h1>Bioluminescent Particle-Based Fluid Animation</h1>
+
+    <div class="wrapper-sub">
+
+        <p><a href="../index.html">More about the project</a></p>
+
+        <button class="toggle-controls">Show / Hide Parameters</button>
+
+    </div>
+
+
+    <script src="perlin.js"></script>
+    <script src="simulation-operations.js"></script>
+    <script src="particle.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
