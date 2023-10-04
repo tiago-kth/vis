@@ -3,7 +3,7 @@ const params = {
     N_PARTICLES: 1,
     ALPHA: 0.3,
     SPREAD: 10,
-    PARTICLE_RADIUS: 5,
+    PARTICLE_RADIUS: 2,
     MIN_DECAY: 20,
     DECAY_INCREMENT: 100,
     PARTICLE_COLOR: '#40a8ff',
@@ -23,6 +23,8 @@ class Canvas {
     J;
     line = 1;
     margin = 50;
+
+    el;
 
     N;
 
@@ -192,19 +194,54 @@ function clearCanvas() {
     
 }
 
-const p = new Particle(100, 190, cv, 0.3);
+const particles = [];
+
+const p = new Particle(100, 190, cv, 0.5);
+
+particles.push(p);
 
 function draw() {
 
-    clearCanvas();
+    //clearCanvas();
     //cv.ctx.fill();
-    cv.build_grid();
-    flowField.render_vectors();
-    p.update();
-    p.render();
+    //cv.build_grid();
+    //flowField.render_vectors();
+
+    particles.forEach(p => {
+        p.update();
+        p.render();
+    })
 
 
 }
+
+function draw_first() {
+
+    //clearCanvas();
+    //cv.ctx.fill();
+    cv.build_grid();
+    flowField.render_vectors();
+
+    particles.forEach(p => {
+        p.update();
+        p.render();
+    })
+
+
+}
+
+function addParticle(e) {
+    console.log(e);
+
+    const x = e.offsetX;
+    const y = e.offsetY;
+
+    const p = new Particle(x - cv.margin, y - cv.margin, cv, 0.5);
+    
+    particles.push(p);
+}
+
+cv.el.addEventListener('click', addParticle);
 
 
 /* animation loop */
@@ -224,5 +261,5 @@ function start() {
     window.requestAnimationFrame(animate);
 }
 
-draw();
+draw_first();
 //start();

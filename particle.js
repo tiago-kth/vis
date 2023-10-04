@@ -14,6 +14,7 @@ class Particle {
     color;
     r;
     arc_length;
+    speed;
 
     constructor(x, y, canvas, alpha) {
 
@@ -21,6 +22,7 @@ class Particle {
         this.alpha = alpha;
         this.initial_distance = Math.random() * 10;
         this.arc_length = Math.PI * 2;// Math.random() * Math.PI * 2;
+        this.speed = 10;
 
         this.r = params.PARTICLE_RADIUS;
 
@@ -64,8 +66,6 @@ class Particle {
 
         const v = this.getVelocity();
 
-        console.log(v);
-
         const vx = v.x;
         const vy = v.y;
 
@@ -78,8 +78,8 @@ class Particle {
         this.x0 = this.x;
         this.y0 = this.y;
 
-        this.x += vx * 1;
-        this.y += vy * 1;
+        this.x += vx * this.speed;
+        this.y += vy * this.speed;
 
         if (this.x >= this.xmax) this.x = 1;
         if (this.x <= 0) this.x = this.xmax-1;
@@ -122,8 +122,6 @@ class Particle {
 
 }
 
-let particles = [];
-
 const Np = 20;
 
 function generate_particles(N, x0, y0) {
@@ -133,8 +131,6 @@ function generate_particles(N, x0, y0) {
         const v = Vec.fromAngle(theta);
 
         const r = Math.random() * params.SPREAD * cv.cell_size + cv.cell_size;
-
-        //console.log(v);
 
         const new_p = new Particle(x0 + v.x * r, y0 + v.y * r, cv);
 
