@@ -1,6 +1,7 @@
 const params = {
     SPEED_INCREMENT: 100,
     N_PARTICLES: 1,
+    ALPHA: 0.3,
     SPREAD: 10,
     PARTICLE_RADIUS: 5,
     MIN_DECAY: 20,
@@ -102,8 +103,8 @@ class Canvas {
 
         return {
 
-            i : Math.floor( (x - this.margin) / cell_size),
-            j : Math.floor( (y - this.margin) / cell_size)
+            i : Math.floor( x / cell_size),
+            j : Math.floor( y / cell_size)
 
         }
 
@@ -131,11 +132,13 @@ class Vec {
 
     x;
     y;
+    angle;
 
-    constructor(x, y) {
+    constructor(x, y, angle = false) {
 
         this.x = x;
         this.y = y;
+        this.angle = angle;
 
     }
 
@@ -165,7 +168,7 @@ class Vec {
         let x = Math.cos(ang);
         let y = Math.sin(ang);
 
-        return new Vec(x, y)
+        return new Vec(x, y, ang)
 
     }
 
@@ -195,6 +198,7 @@ function draw() {
 
     cv.ctx.fill();
     cv.build_grid();
+    flowField.render_vectors();
 
 }
 

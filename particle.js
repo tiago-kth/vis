@@ -15,15 +15,14 @@ class Particle {
     r;
     arc_length;
 
-    constructor(x, y, canvas) {
+    constructor(x, y, canvas, alpha) {
 
         this.canvas = canvas;
-        this.alpha = 1;
+        this.alpha = alpha;
         this.initial_distance = Math.random() * 10;
         this.arc_length = Math.PI * 2;// Math.random() * Math.PI * 2;
 
         this.r = params.PARTICLE_RADIUS;
-
 
         this.color = params.PARTICLE_COLOR;//'cyan';//colors[Math.ceil(Math.random() * 3)-1];//'turquoise'; //`rgb(0, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
 
@@ -35,33 +34,19 @@ class Particle {
         this.x0 = x;
         this.y0 = y;
 
-        
+        const {i, j} = this.getCell();
+        this.canvas.highlightCell(i,j);
 
         this.getVelocity();
 
-        /*
-        console.log(this.vx, this.vy);
-        this.vx += vx0 * 10;
-        this.vy += vy0 * 10;
-        console.log(this.vx, this.vy);
-        */
-
-
-        this.xmax = canvas.W;
-        this.ymax = canvas.H;
+        this.xmax = canvas.w;
+        this.ymax = canvas.h;
 
     }
 
     getCell() {
 
-        const cell_size = this.canvas.cell_size;
-
-        return {
-
-            i : Math.floor(this.x / cell_size),
-            j : Math.floor(this.y / cell_size)
-
-        }
+        return this.canvas.getCell(this.x, this.y);
 
     }
 
@@ -69,13 +54,7 @@ class Particle {
 
         const {i, j} = this.getCell();
 
-        const n = fluid.getIndex(i, j);
-        
-        this.vx = fluid.Vx[n];
-        this.vy = fluid.Vy[n];
-
-        console.log(i, j, n, this.vx, this.vy)
-
+        return flowField.getVelocity(i, j);
 
     }
 
@@ -83,7 +62,15 @@ class Particle {
 
         const cell_size = cv.cell_size;
 
-        this.getVelocity();
+        const v = this.getVelocity();
+
+        console.log(v);
+
+        const vx = v.x;
+        const vy = v.y;
+
+        this.vx = vx;
+        this.vy = vy;
 
         //this.alpha = (1 - this.decay) * this.alpha;
         //this.r = (1 - this.decay) * this.r;
@@ -91,8 +78,8 @@ class Particle {
         this.x0 = this.x;
         this.y0 = this.y;
 
-        this.x += this.vx * 1;
-        this.y += this.vy * 1;
+        this.x += vx * 1;
+        this.y += vy * 1;
 
         if (this.x >= this.xmax) this.x = 1;
         if (this.x <= 0) this.x = this.xmax-1;
@@ -103,15 +90,18 @@ class Particle {
 
     render() {
 
+        const m = this.canvas.margin;
+
+        const ctx = this.canvas.ctx;
         //cv.ctx.strokeStyle = 'cyan';
-        cv.ctx.fillStyle = this.color;//'blue';
-        cv.ctx.lineWidth = 1;
-        cv.ctx.beginPath();
-        cv.ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;//'blue';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.globalAlpha = this.alpha;
         //cv.ctx.moveTo(this.x0, this.y0);
-        cv.ctx.arc(this.x, this.y, this.r, 0, this.arc_length);//Math.PI * 2);
+        ctx.arc(m + this.x, m + this.y, this.r, 0, this.arc_length);//Math.PI * 2);
         //cv.ctx.lineTo(this.x, this.y);
-        cv.ctx.fill();
+        ctx.fill();
         //cv.ctx.strokeStyle = 'white';
         //cv.ctx.filter = "blur(1px)";
         //cv.ctx.stroke();

@@ -26,6 +26,20 @@ class FlowField {
 
     }
 
+    getIndex(i, j) {
+
+        // deal with invalid values
+        return j * this.I + i % this.I;
+    }
+
+    getVelocity(i, j) {
+
+        const index = this.getIndex(i,j);
+
+        return this.vectorField[index];
+
+    }
+
     make_random_field() {
 
         let index = 0;
@@ -59,15 +73,25 @@ class FlowField {
             const x = m + i * this.cv.cell_size;
             const y = m + j * this.cv.cell_size;
 
-            console.log(x, y);
+            console.log(vec.angle);
 
             ctx.save();
             ctx.strokeStyle = params.VECTOR_COLOR;
             ctx.translate(x, y);
+
+
+            ctx.font = `${this.vSize}px serif`;
+            ctx.textBaseline = "middle";
+
+            ctx.rotate(vec.angle);
+            ctx.fillStyle = params.VECTOR_COLOR;
+            ctx.fillText('→', 0, 0);
+            /*
             ctx.beginPath();
             ctx.moveTo(0, 0);
             ctx.lineTo(vec.x * this.vSize, vec.y * this.vSize);
             ctx.stroke();
+            */
             ctx.restore();
 
 
