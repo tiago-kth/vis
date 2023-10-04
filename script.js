@@ -192,13 +192,17 @@ function clearCanvas() {
     
 }
 
+const p = new Particle(100, 190, cv, 0.3);
+
 function draw() {
 
     clearCanvas();
-
-    cv.ctx.fill();
+    //cv.ctx.fill();
     cv.build_grid();
     flowField.render_vectors();
+    p.update();
+    p.render();
+
 
 }
 
