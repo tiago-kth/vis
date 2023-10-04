@@ -6,7 +6,9 @@ const params = {
     MIN_DECAY: 20,
     DECAY_INCREMENT: 100,
     PARTICLE_COLOR: '#40a8ff',
-    BG: "white"
+    BG: "white",
+    GRID_COLOR: "#33333350",
+    VECTOR_COLOR: "green"
 }
 
 class Canvas {
@@ -19,6 +21,7 @@ class Canvas {
     I;
     J;
     line = 1;
+    margin = 50;
 
     N;
 
@@ -31,8 +34,8 @@ class Canvas {
         this.el.width = this.W;
         this.el.height = this.H;
 
-        this.I = Math.floor(this.W / this.cell_size);
-        this.J = Math.floor(this.H / this.cell_size);
+        this.I = Math.floor( (this.W - this.margin * 2) / this.cell_size);
+        this.J = Math.floor( (this.H - this.margin * 2) / this.cell_size);
 
         this.w = this.cell_size * this.I;
         this.h = this.cell_size * this.J;
@@ -41,7 +44,7 @@ class Canvas {
 
         this.ctx = this.el.getContext('2d');
 
-        this.ctx.strokeStyle = 'green';
+        this.ctx.strokeStyle = params.GRID_COLOR;
         this.ctx.lineWidth = this.line;
 
 
@@ -53,21 +56,21 @@ class Canvas {
         //let I = 0;
         //let J = 0;
 
-        for (let i = 0; i < this.W; i = i + this.cell_size) {
+        for (let i = 0; i < this.I + 1; i++) {
 
             this.ctx.beginPath();
-            this.ctx.moveTo(i, 0);
-            this.ctx.lineTo(i, this.h);
+            this.ctx.moveTo(this.margin + i * this.cell_size, this.margin);
+            this.ctx.lineTo(this.margin + i * this.cell_size, this.h + this.margin);
             this.ctx.stroke();
             //I++
 
         }
 
-        for (let j = 0; j < this.H; j = j + this.cell_size) {
+        for (let j = 0; j < this.J + 1; j++) {
 
             this.ctx.beginPath();
-            this.ctx.moveTo(0, j);
-            this.ctx.lineTo(this.w, j);
+            this.ctx.moveTo(this.margin, this.margin + j * this.cell_size);
+            this.ctx.lineTo(this.w + this.margin, this.margin + j * this.cell_size);
             this.ctx.stroke();
             //J++
 
@@ -99,8 +102,8 @@ class Canvas {
 
         return {
 
-            i : Math.floor(x / cell_size),
-            j : Math.floor(y / cell_size)
+            i : Math.floor( (x - this.margin) / cell_size),
+            j : Math.floor( (y - this.margin) / cell_size)
 
         }
 
@@ -108,8 +111,8 @@ class Canvas {
 
     highlightCell(i, j) {
 
-        const x = i * this.cell_size + this.line;
-        const y = j * this.cell_size + this.line;
+        const x = this.margin + i * this.cell_size + this.line;
+        const y = this.margin + j * this.cell_size + this.line;
         const l = this.cell_size - 2 * this.line;
 
         this.ctx.fillStyle = "yellow";
@@ -174,6 +177,9 @@ let count = 0;
 
 const cv = new Canvas('canvas');
 const N = cv.N;
+
+const flowField = new FlowField(cv.I, cv.J, cv);
+flowField.make_random_field();
 
 function clearCanvas() {
 
