@@ -50,7 +50,7 @@ class FlowField {
 
                 const v = perlin.get( i/this.I , j/this.J );
 
-                const vec = Vec.fromAngle(Math.PI * v);
+                const vec = Vec.fromAngle(Math.PI * v * 4);
 
                 this.vectorField.push(vec);
 
