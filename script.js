@@ -253,13 +253,19 @@ function animate(timestamp) {
     elapsed = timestamp - previous;
     draw();
     previous = timestamp;
-    window.requestAnimationFrame(animate);
+    requestID = window.requestAnimationFrame(animate);
 
 }
 
+let requestID;
+
 function start() {
-    window.requestAnimationFrame(animate);
+    requestID = window.requestAnimationFrame(animate);
 }
 
 draw_first();
 //start();
+
+function stop() {
+    cancelAnimationFrame(requestID);
+}
