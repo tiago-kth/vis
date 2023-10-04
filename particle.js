@@ -74,39 +74,30 @@ class Particle {
         this.vx = fluid.Vx[n];
         this.vy = fluid.Vy[n];
 
+        console.log(i, j, n, this.vx, this.vy)
+
 
     }
 
     update() {
 
-        const dt = params.TIME_STEP;
         const cell_size = cv.cell_size;
 
         this.getVelocity();
 
-        this.alpha = (1 - this.decay) * this.alpha;
+        //this.alpha = (1 - this.decay) * this.alpha;
         //this.r = (1 - this.decay) * this.r;
 
         this.x0 = this.x;
         this.y0 = this.y;
 
-        this.x += this.vx * dt * params.SPEED_INCREMENT * 100;
-        this.y += this.vy * dt * params.SPEED_INCREMENT * 100;
+        this.x += this.vx * 1;
+        this.y += this.vy * 1;
 
-        //console.log(this.vx, this.vx * dt * params.SPEED_INCREMENT * 100);
-
-        if (this.x > this.xmax - 1.5 * cell_size || this.x < cell_size) {
-
-            this.x -= this.vx * dt * params.SPEED_INCREMENT * 100;
-
-        }
-
-        if (this.y > this.ymax - 1.5 * cell_size || this.y < cell_size) {
-
-            this.y -= this.vy * dt * params.SPEED_INCREMENT * 100;
-
-        }
-
+        if (this.x >= this.xmax) this.x = 1;
+        if (this.x <= 0) this.x = this.xmax-1;
+        if (this.y >= this.ymax) this.y = 1;
+        if (this.y <= 0) this.y = this.ymax-1;
 
     }
 
