@@ -76,7 +76,8 @@ class FlowField {
             ctx.save();
             ctx.strokeStyle = params.VECTOR_COLOR;
             ctx.translate(x, y);
-
+            
+            ctx.globalAlpha = 0.5;
 
             ctx.font = `${this.vSize}px serif`;
             ctx.textBaseline = "middle";

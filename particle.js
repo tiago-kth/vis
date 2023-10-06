@@ -15,6 +15,7 @@ class Particle {
     r;
     arc_length;
     speed;
+    exit = false;
 
     constructor(x, y, canvas, alpha) {
 
@@ -22,7 +23,7 @@ class Particle {
         this.alpha = alpha;
         this.initial_distance = Math.random() * 10;
         this.arc_length = Math.PI * 2;// Math.random() * Math.PI * 2;
-        this.speed = 10;
+        this.speed = .5;
 
         this.r = params.PARTICLE_RADIUS;
 
@@ -37,7 +38,7 @@ class Particle {
         this.y0 = y;
 
         const {i, j} = this.getCell();
-        this.canvas.highlightCell(i,j);
+        //this.canvas.highlightCell(i,j);
 
         this.getVelocity();
 
@@ -81,22 +82,30 @@ class Particle {
         this.x += vx * this.speed;
         this.y += vy * this.speed;
 
+    }
+
+    treat_edges() {
+
         if (this.x >= this.xmax) {
+            this.exit = true;
             this.x = 1;
             this.x0 = this.x;
         }
 
         if (this.x <= 0) {
+            this.exit = true;
             this.x = this.xmax-1;
             this.x0 = this.x
         }
 
         if (this.y >= this.ymax) {
+            this.exit = true;
             this.y = 1;
             this.y0 = this.y;
         }
 
         if (this.y <= 0) {
+            this.exit = true;
             this.y = this.ymax-1;
             this.y0 = this.y;
         }
@@ -130,8 +139,8 @@ class Particle {
 
         this.update();
         this.render();
-        if (this.alpha < 0.001) this.alpha = 0.0001; // makes sure the last alpha is zero, to avoid "shadows" after the particle was removed
-        if (this.alpha <= 0.0001) particles.splice(i, 1); // now that alpha is really zero and the particle was last rendered with this alpha = 0, remove the particle, leaving no traces
+        //if (this.alpha < 0.001) this.alpha = 0.0001; // makes sure the last alpha is zero, to avoid "shadows" after the particle was removed
+        if (this.exit) particles.splice(i, 1); // now that alpha is really zero and the particle was last rendered with this alpha = 0, remove the particle, leaving no traces
 
     }
 

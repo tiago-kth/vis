@@ -207,9 +207,12 @@ function draw() {
     //cv.build_grid();
     //flowField.render_vectors();
 
-    particles.forEach(p => {
+    particles.forEach((p,i) => {
         p.update();
+        p.treat_edges();
         p.render();
+
+        if (p.exit) particles.splice(i, 1);
     })
 
 
@@ -220,13 +223,47 @@ function draw_first() {
     //clearCanvas();
     //cv.ctx.fill();
     cv.build_grid();
-    flowField.render_vectors();
+    //flowField.render_vectors();
 
     particles.forEach(p => {
         p.update();
         p.render();
     })
 
+
+}
+
+function random_particles(n) {
+
+    for (let t = 0; t < n; t++) {
+
+        const x = Math.random() * cv.w + cv.margin;
+        const y = Math.random() * cv.h + cv.margin;
+
+        const p = new Particle(x - cv.margin, y - cv.margin, cv, 0.5);
+    
+        particles.push(p);
+
+    }
+
+}
+
+function all_particles() {
+
+    for (let i = 0; i < cv.I - 2; i++) {
+        for (let j = 0; j < cv.J - 2; j++) {
+
+            console.log(i,j)
+
+            const x = cv.cell_size * i + cv.margin - 1;
+            const y = cv.cell_size * j + cv.margin - 1;
+
+            const p = new Particle(x, y, cv, .9);
+
+            particles.push(p);
+
+        }
+    }
 
 }
 
