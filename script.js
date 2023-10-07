@@ -15,7 +15,7 @@ const params = {
 
 class Canvas {
 
-    cell_size = 10;
+    cell_size = 20;
     W;
     H;
     w;
@@ -23,7 +23,7 @@ class Canvas {
     I;
     J;
     line = 1;
-    margin = 50;
+    margin = 20;
 
     el;
 
@@ -32,8 +32,8 @@ class Canvas {
     constructor(ref) {
 
         this.el = document.querySelector(ref);
-        this.W = +window.getComputedStyle(this.el).width.slice(0,-2);
-        this.H = +window.getComputedStyle(this.el).height.slice(0,-2);
+        this.W = 500;//+window.getComputedStyle(this.el).width.slice(0,-2);
+        this.H = 500;//+window.getComputedStyle(this.el).height.slice(0,-2);
 
         this.el.width = this.W;
         this.el.height = this.H;
@@ -203,7 +203,7 @@ particles.push(p);
 
 function draw() {
 
-    clearCanvas(0.05);
+    //clearCanvas(0.05);
     //cv.ctx.fill();
     //cv.build_grid();
     //flowField.render_vectors();
@@ -221,7 +221,7 @@ function draw() {
 
 function draw_first() {
 
-    clearCanvas();
+    //clearCanvas();
     //cv.ctx.fill();
     //cv.build_grid();
     //flowField.render_vectors();
@@ -243,7 +243,7 @@ function random_particles() {
         const x = Math.random() * cv.w;// + cv.margin;
         const y = Math.random() * cv.h;// + cv.margin;
 
-        const p = new Particle(x, y, cv, 1);
+        const p = new Particle(x, y, cv, .5);
     
         particles.push(p);
 
@@ -266,6 +266,23 @@ function all_particles() {
             particles.push(p);
 
         }
+    }
+
+}
+
+function random_streams() {
+
+    const n = params.N_RANDOM;
+
+    for (let t = 0; t < n; t++) {
+
+        const x = Math.random() * cv.w; + cv.margin;
+        const y = Math.random() * cv.h; + cv.margin;
+
+        const s = new Streamline(x, y, 5, cv, flowField, 200);
+
+        s.draw();
+    
     }
 
 }
@@ -308,6 +325,11 @@ draw_first();
 
 function stop() {
     cancelAnimationFrame(requestID);
+}
+
+function setup() {
+    cv.build_grid();
+    flowField.render_vectors();
 }
 
 
