@@ -91,27 +91,27 @@ class Particle {
 
         const m = this.canvas.margin;
 
-        if (this.x >= this.xmax - m + 1) {
+        if (this.x >= this.xmax - m - 1) {
             this.exit = true;
-            this.x = m;
+            this.x = m + 1;
             this.x0 = this.x;
         }
 
         if (this.x <= m + 1) {
             this.exit = true;
-            this.x = this.xmax-m;
+            this.x = this.xmax - m - 1;
             this.x0 = this.x
         }
 
         if (this.y >= this.ymax - m + 1) {
             this.exit = true;
-            this.y = m;
+            this.y = m + 1;
             this.y0 = this.y;
         }
 
         if (this.y <= m + 1) {
             this.exit = true;
-            this.y = this.ymax-m;
+            this.y = this.ymax - m - 1;
             this.y0 = this.y;
         }
 
