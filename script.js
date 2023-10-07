@@ -197,16 +197,21 @@ function clearCanvas(alpha) {
 
 const particles = [];
 
-const p = new Particle(100, 190, cv, 0.5);
+const p = new Particle(100, 190, cv, 1);
 
 particles.push(p);
 
 function draw() {
 
     //clearCanvas(0.05);
+    clearCanvas(1);
+
     //cv.ctx.fill();
     //cv.build_grid();
     //flowField.render_vectors();
+
+    // recover previously saved img;
+    cv.ctx.drawImage(bg, 0, 0);
 
     particles.forEach((p,i) => {
         p.update();
@@ -243,7 +248,7 @@ function random_particles() {
         const x = Math.random() * cv.w;// + cv.margin;
         const y = Math.random() * cv.h;// + cv.margin;
 
-        const p = new Particle(x, y, cv, .5);
+        const p = new Particle(x, y, cv, 1); //.5
     
         particles.push(p);
 
@@ -330,6 +335,24 @@ function stop() {
 function setup() {
     cv.build_grid();
     flowField.render_vectors();
+}
+
+let bg = new Image;
+
+// gerar as stramlines antes
+
+function saveImg() {
+
+    bg.src = cv.el.toDataURL();
+    clearCanvas(1);
+}
+
+function new_start() {
+    setup();
+    random_streams();
+    saveImg();
+    random_particles();
+    start();
 }
 
 
