@@ -5,15 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Poppins:ital,wght@0,200;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <canvas></canvas>
-
     <h1>Steady flow field</h1>
+
+    <div class="wrapper">
+        <div class="controls">
+
+            <button data-btn="start">Start</button>
+
+            <button data-btn="place-random">Place random particles</button>
+
+        </div>
+        <canvas></canvas>
+    </div>
+
+
+    
 
     <script src="perlin.js"></script>
     <script src="flow-field.js"></script>

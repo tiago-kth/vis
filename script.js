@@ -9,7 +9,8 @@ const params = {
     PARTICLE_COLOR: 'firebrick',
     BG: "whitesmoke",
     GRID_COLOR: "#33333350",
-    VECTOR_COLOR: "green"
+    VECTOR_COLOR: "green",
+    N_RANDOM: 1000
 }
 
 class Canvas {
@@ -233,7 +234,9 @@ function draw_first() {
 
 }
 
-function random_particles(n) {
+function random_particles() {
+
+    const n = params.N_RANDOM;
 
     for (let t = 0; t < n; t++) {
 
@@ -306,3 +309,25 @@ draw_first();
 function stop() {
     cancelAnimationFrame(requestID);
 }
+
+
+// controls
+
+class Button {
+
+    el;
+
+    action;
+
+    constructor(ref, action) {
+
+        this.el = document.querySelector(`[data-btn="${ref}"]`);
+
+        this.el.addEventListener('click', action);
+
+    }
+
+}
+
+const btnStart = new Button('start', start);
+const btnRandomParticles = new Button('place-random', random_particles);
