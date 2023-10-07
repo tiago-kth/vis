@@ -16,6 +16,7 @@ class Particle {
     arc_length;
     speed;
     exit = false;
+    steps = 0;
 
     constructor(x, y, canvas, alpha) {
 
@@ -81,6 +82,8 @@ class Particle {
 
         this.x += vx * this.speed;
         this.y += vy * this.speed;
+
+        this.step++;
 
     }
 

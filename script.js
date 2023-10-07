@@ -6,15 +6,15 @@ const params = {
     PARTICLE_RADIUS: 2,
     MIN_DECAY: 20,
     DECAY_INCREMENT: 100,
-    PARTICLE_COLOR: '#40a8ff',
-    BG: "white",
+    PARTICLE_COLOR: 'firebrick',
+    BG: "whitesmoke",
     GRID_COLOR: "#33333350",
     VECTOR_COLOR: "green"
 }
 
 class Canvas {
 
-    cell_size = 20;
+    cell_size = 10;
     W;
     H;
     w;
@@ -186,10 +186,10 @@ const N = cv.N;
 const flowField = new FlowField(cv.I, cv.J, cv);
 flowField.make_random_field();
 
-function clearCanvas() {
+function clearCanvas(alpha) {
 
     cv.ctx.fillStyle = params.BG;
-    cv.ctx.globalAlpha = 1;
+    cv.ctx.globalAlpha = alpha;
     cv.ctx.fillRect(0,0,cv.W,cv.H);
     
 }
@@ -202,7 +202,7 @@ particles.push(p);
 
 function draw() {
 
-    //clearCanvas();
+    clearCanvas(0.05);
     //cv.ctx.fill();
     //cv.build_grid();
     //flowField.render_vectors();
@@ -212,7 +212,7 @@ function draw() {
         p.treat_edges();
         p.render();
 
-        if (p.exit) particles.splice(i, 1);
+        //if (p.exit) particles.splice(i, 1);
     })
 
 
@@ -220,9 +220,9 @@ function draw() {
 
 function draw_first() {
 
-    //clearCanvas();
+    clearCanvas();
     //cv.ctx.fill();
-    cv.build_grid();
+    //cv.build_grid();
     //flowField.render_vectors();
 
     particles.forEach(p => {
@@ -237,10 +237,10 @@ function random_particles(n) {
 
     for (let t = 0; t < n; t++) {
 
-        const x = Math.random() * cv.w + cv.margin;
-        const y = Math.random() * cv.h + cv.margin;
+        const x = Math.random() * cv.w;// + cv.margin;
+        const y = Math.random() * cv.h;// + cv.margin;
 
-        const p = new Particle(x - cv.margin, y - cv.margin, cv, 0.5);
+        const p = new Particle(x, y, cv, 1);
     
         particles.push(p);
 
@@ -250,15 +250,15 @@ function random_particles(n) {
 
 function all_particles() {
 
-    for (let i = 0; i < cv.I - 2; i++) {
-        for (let j = 0; j < cv.J - 2; j++) {
+    for (let i = 0; i < cv.I; i++) {
+        for (let j = 0; j < cv.J; j++) {
 
             console.log(i,j)
 
-            const x = cv.cell_size * i + cv.margin - 1;
-            const y = cv.cell_size * j + cv.margin - 1;
+            const x = cv.cell_size * i;
+            const y = cv.cell_size * j;
 
-            const p = new Particle(x, y, cv, .9);
+            const p = new Particle(x, y, cv, .5);
 
             particles.push(p);
 
