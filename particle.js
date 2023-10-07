@@ -24,7 +24,7 @@ class Particle {
         this.alpha = alpha;
         this.initial_distance = Math.random() * 10;
         this.arc_length = Math.PI * 2;// Math.random() * Math.PI * 2;
-        this.speed = .5;
+        this.speed = .25;
 
         this.r = params.PARTICLE_RADIUS;
 
@@ -89,27 +89,29 @@ class Particle {
 
     treat_edges() {
 
-        if (this.x >= this.xmax) {
+        const m = this.canvas.margin;
+
+        if (this.x >= this.xmax - m + 1) {
             this.exit = true;
-            this.x = 1;
+            this.x = m;
             this.x0 = this.x;
         }
 
-        if (this.x <= 0) {
+        if (this.x <= m + 1) {
             this.exit = true;
-            this.x = this.xmax-1;
+            this.x = this.xmax-m;
             this.x0 = this.x
         }
 
-        if (this.y >= this.ymax) {
+        if (this.y >= this.ymax - m + 1) {
             this.exit = true;
-            this.y = 1;
+            this.y = m;
             this.y0 = this.y;
         }
 
-        if (this.y <= 0) {
+        if (this.y <= m + 1) {
             this.exit = true;
-            this.y = this.ymax-1;
+            this.y = this.ymax-m;
             this.y0 = this.y;
         }
 
