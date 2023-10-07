@@ -120,9 +120,10 @@ class Particle {
         const m = this.canvas.margin;
 
         const ctx = this.canvas.ctx;
+        ctx.save();
         //cv.ctx.strokeStyle = 'cyan';
         ctx.fillStyle = this.color;//'blue';
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.globalAlpha = this.alpha;
         cv.ctx.moveTo(m + this.x0, m + this.y0);
@@ -134,6 +135,7 @@ class Particle {
         //cv.ctx.filter = "blur(1px)";
         cv.ctx.stroke();
         cv.ctx.closePath();
+        ctx.restore();
         //cv.ctx.stroke();
 
     }
