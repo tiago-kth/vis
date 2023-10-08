@@ -7,7 +7,7 @@ const params = {
     MIN_DECAY: 20,
     DECAY_INCREMENT: 100,
     PARTICLE_COLOR: 'firebrick',
-    BG: "whitesmoke",
+    BG: "white",
     GRID_COLOR: "#33333350",
     VECTOR_COLOR: "green",
     N_RANDOM: 1000
@@ -32,8 +32,8 @@ class Canvas {
     constructor(ref) {
 
         this.el = document.querySelector(ref);
-        this.W = 500;//+window.getComputedStyle(this.el).width.slice(0,-2);
-        this.H = 500;//+window.getComputedStyle(this.el).height.slice(0,-2);
+        this.W = 600;//+window.getComputedStyle(this.el).width.slice(0,-2);
+        this.H = 600;//+window.getComputedStyle(this.el).height.slice(0,-2);
 
         this.el.width = this.W;
         this.el.height = this.H;
@@ -203,6 +203,7 @@ particles.push(p);
 
 function draw() {
 
+
     clearCanvas(0.05); // com esse, deixa um "rastro"
     //clearCanvas(1);
 
@@ -220,6 +221,8 @@ function draw() {
 
         //if (p.exit) particles.splice(i, 1);
     })
+
+    
 
 
 }

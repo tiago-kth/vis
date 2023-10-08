@@ -26,7 +26,7 @@ class Particle {
         this.alpha = alpha;
         this.initial_distance = Math.random() * 10;
         this.arc_length = Math.PI * 2;// Math.random() * Math.PI * 2;
-        this.speed = .2;
+        this.speed = .25;
 
         this.r = params.PARTICLE_RADIUS;
 
@@ -151,7 +151,7 @@ class Particle {
         //ctx.stroke();
         ctx.globalAlpha = this.alpha;
         //ctx.beginPath();
-        ctx.arc(m + this.x, m + this.y, 2, 0, this.arc_length);//Math.PI * 2);
+        ctx.arc(m + this.x, m + this.y, 1, 0, this.arc_length);//Math.PI * 2);
         //ctx.fillStyle = this.color;
         ctx.fill();
         cv.ctx.strokeStyle = this.color;
