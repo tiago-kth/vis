@@ -251,10 +251,10 @@ class Streamline {
         const ctx = this.canvas.ctx;
 
         ctx.strokeStyle = this.color;
-        ctx.alpha = 1;
-        ctx.lineWidth = 2;
+        //ctx.alpha = 1;
+        ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.globalAlpha = this.alpha;
+        ctx.globalAlpha = .7;
         cv.ctx.moveTo(m + this.x_ant, m + this.y_ant);
         cv.ctx.lineTo(m + this.x, m +this.y);
         cv.ctx.stroke();
