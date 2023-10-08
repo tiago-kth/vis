@@ -275,6 +275,23 @@ function all_particles() {
 
 }
 
+const seeds = [];
+
+function generate_seeds() {
+
+    const n = params.N_RANDOM;
+
+    for (let t = 0; t < n; t++) {
+
+        const x = Math.random() * cv.w + cv.margin;
+        const y = Math.random() * cv.h + cv.margin;
+
+        seeds.push({x,y});
+    
+    }
+
+}
+
 function random_streams() {
 
     const n = params.N_RANDOM;
@@ -289,6 +306,38 @@ function random_streams() {
         s.draw();
     
     }
+
+}
+
+let streamlines = [];
+
+function draw_streams() {
+    streamlines.forEach(s => s.draw());
+}
+
+function generate_streams() {
+
+    seeds.forEach(seed => {
+
+        const {x, y} = seed;
+    
+        const s = new Streamline(x, y, 5, cv, flowField, 200);
+        streamlines.push(s);
+    
+    })
+
+}
+
+function generate_particles() {
+
+    seeds.forEach(seed => {
+
+        const {x, y} = seed;
+    
+        const p = new Particle(x - cv.margin, y - cv.margin, cv, 1); //.5
+        particles.push(p);
+    
+    })
 
 }
 
@@ -325,7 +374,7 @@ function start() {
     requestID = window.requestAnimationFrame(animate);
 }
 
-draw_first();
+//draw_first();
 //start();
 
 function stop() {
@@ -355,6 +404,15 @@ function new_start() {
     start();
 }
 
+function alternate_start() {
+    setup();
+    generate_seeds();
+    generate_streams();
+    generate_particles();
+    draw_streams();
+    saveImg();
+    start();
+}
 
 // controls
 
