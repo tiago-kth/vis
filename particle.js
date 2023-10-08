@@ -8,6 +8,8 @@ class Particle {
     y;
     x0;
     y0;
+    xant;
+    yant;
     canvas;
     alpha;
     decay;
@@ -37,6 +39,9 @@ class Particle {
 
         this.x0 = x;
         this.y0 = y;
+
+        this.xant = x;
+        this.yant = y;
 
         const {i, j} = this.getCell();
         //this.canvas.highlightCell(i,j);
@@ -77,8 +82,8 @@ class Particle {
         //this.alpha = (1 - this.decay) * this.alpha;
         //this.r = (1 - this.decay) * this.r;
 
-        this.x0 = this.x;
-        this.y0 = this.y;
+        this.xant = this.x;
+        this.yant = this.y;
 
         this.x += vx * this.speed;
         this.y += vy * this.speed;
@@ -91,28 +96,36 @@ class Particle {
 
         const m = this.canvas.margin;
 
-        if (this.x >= this.xmax - m - 1) {
+        if (this.x >= this.xmax) {
             this.exit = true;
-            this.x = m + 1;
-            this.x0 = this.x;
+            //this.x = m + 1;
+            //this.xant = this.x;
         }
 
-        if (this.x <= m + 1) {
+        if (this.x <= 0) {
             this.exit = true;
-            this.x = this.xmax - m - 1;
-            this.x0 = this.x
+            //this.x = this.xmax - m - 1;
+            //this.xant = this.x
         }
 
-        if (this.y >= this.ymax - m + 1) {
+        if (this.y >= this.ymax) {
             this.exit = true;
-            this.y = m + 1;
-            this.y0 = this.y;
+            //this.y = m + 1;
+            //this.yant = this.y;
         }
 
-        if (this.y <= m + 1) {
+        if (this.y <= 0) {
             this.exit = true;
-            this.y = this.ymax - m - 1;
-            this.y0 = this.y;
+            //this.y = this.ymax - m - 1;
+            //this.yant = this.y;
+        }
+
+        if (this.exit) {
+            this.x = this.x0;
+            this.y = this.y0;
+            this.xant = this.x0;
+            this.yant = this.y0;
+            this.exit = false;
         }
 
     }
