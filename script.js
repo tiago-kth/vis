@@ -211,7 +211,7 @@ function draw() {
     //flowField.render_vectors();
 
     // recover previously saved img;
-    cv.ctx.drawImage(bg, 0, 0);
+    cv.ctx.drawImage(imgs['vectors and streamlines'], 0, 0);
 
     particles.forEach((p,i) => {
         p.update();
