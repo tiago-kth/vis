@@ -73,9 +73,11 @@ class FlowField {
             const x = m + i * this.cv.cell_size;
             const y = m + j * this.cv.cell_size;
 
+            const d = this.cv.cell_size / 2;
+
             ctx.save();
             ctx.strokeStyle = params.VECTOR_COLOR;
-            ctx.translate(x, y);
+            ctx.translate(x + d, y + d);
             
             ctx.globalAlpha = 0.5;
 
