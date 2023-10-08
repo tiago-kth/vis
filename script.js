@@ -203,8 +203,8 @@ particles.push(p);
 
 function draw() {
 
-    //clearCanvas(0.05); // com esse, deixa um "rastro"
-    clearCanvas(1);
+    clearCanvas(0.05); // com esse, deixa um "rastro"
+    //clearCanvas(1);
 
     //cv.ctx.fill();
     //cv.build_grid();
