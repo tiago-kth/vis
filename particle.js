@@ -26,7 +26,7 @@ class Particle {
         this.alpha = alpha;
         this.initial_distance = Math.random() * 10;
         this.arc_length = Math.PI * 2;// Math.random() * Math.PI * 2;
-        this.speed = .25;
+        this.speed = .2;
 
         this.r = params.PARTICLE_RADIUS;
 
@@ -140,11 +140,19 @@ class Particle {
         ctx.fillStyle = this.color;//'blue';
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.globalAlpha = this.alpha;
         //cv.ctx.moveTo(m + this.x0, m + this.y0);
         //ctx.arc(m + this.x, m + this.y, this.r, 0, this.arc_length);//Math.PI * 2);
         //cv.ctx.lineTo(m + this.x, m +this.y);
+        //ctx.globalAlpha = .3;
+        //ctx.arc(m + this.xant, m + this.yant, 2, 0, this.arc_length);
+        //cv.ctx.closePath();
+        //ctx.fillStyle = "blue";
+        //ctx.fill();
+        //ctx.stroke();
+        ctx.globalAlpha = this.alpha;
+        //ctx.beginPath();
         ctx.arc(m + this.x, m + this.y, 2, 0, this.arc_length);//Math.PI * 2);
+        //ctx.fillStyle = this.color;
         ctx.fill();
         cv.ctx.strokeStyle = this.color;
         //cv.ctx.filter = "blur(1px)";
