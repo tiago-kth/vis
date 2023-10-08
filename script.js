@@ -315,6 +315,10 @@ function draw_streams() {
     streamlines.forEach(s => s.draw());
 }
 
+function reset_streams() {
+    streamlines.forEach(s => s.reset());
+}
+
 function generate_streams() {
 
     seeds.forEach(seed => {
@@ -386,14 +390,48 @@ function setup() {
     flowField.render_vectors();
 }
 
-let bg = new Image;
+let imgs = {
+    'vectors and streamlines' : null,
+    'vectors' : null,
+    'streamlines' : null
+}
+
+function init_bgs() {
+
+    Object.keys(imgs).forEach(key => {
+        imgs[key] = new Image;
+    })
+
+}
 
 // gerar as stramlines antes
 
-function saveImg() {
+function setup() {
 
-    bg.src = cv.el.toDataURL();
+    init_bgs();
+
+    cv.build_grid();
+    flowField.render_vectors();
+
+    imgs['vectors'].src = cv.el.toDataURL();
+
+    generate_seeds();
+    generate_streams();
+    generate_particles();
+
+    draw_streams();
+
+    imgs['vectors and streamlines'].src = cv.el.toDataURL();
+
     clearCanvas(1);
+
+    reset_streams();
+    draw_streams();
+
+    imgs['streamlines'].src = cv.el.toDataURL();
+
+    clearCanvas(1);
+
 }
 
 function new_start() {
@@ -406,11 +444,11 @@ function new_start() {
 
 function alternate_start() {
     setup();
-    generate_seeds();
-    generate_streams();
-    generate_particles();
-    draw_streams();
-    saveImg();
+    //generate_seeds();
+    //generate_streams();
+    //generate_particles();
+    //draw_streams();
+    //saveImg();
     start();
 }
 
