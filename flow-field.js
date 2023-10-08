@@ -277,6 +277,15 @@ class Streamline {
 
     }
 
+    reset() {
+
+        this.x = this.x0;
+        this.y = this.y0;
+        this.nof_steps = 0;
+        this.outOfBounds = false;
+
+    }
+
     
 
 }
