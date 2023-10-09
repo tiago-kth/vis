@@ -13,6 +13,12 @@ const params = {
     N_RANDOM: 1000
 }
 
+const state = {
+    'toggle: show vectors' : false,
+    'toggle: show streamlines' : false,
+    'clear' : false,
+}
+
 class Canvas {
 
     cell_size = 20;
@@ -212,7 +218,26 @@ function draw() {
     //flowField.render_vectors();
 
     // recover previously saved img;
-    cv.ctx.drawImage(imgs['vectors and streamlines'], 0, 0);
+
+    if (state["toggle: show streamlines"] && state["toggle: show vectors"]) {
+
+        cv.ctx.drawImage(imgs['vectors and streamlines'], 0, 0);
+
+    } else {
+
+        if (state["toggle: show streamlines"]) cv.ctx.drawImage(imgs.streamlines, 0, 0);
+
+        else {
+            if (state["toggle: show vectors"]) cv.ctx.drawImage(imgs.vectors, 0 ,0);
+        }
+
+    }
+
+    if (state.clear) {
+        console.log('clear!');
+        clearCanvas(1);
+        state.clear = false;
+    }
 
     particles.forEach((p,i) => {
         p.update();
@@ -221,9 +246,6 @@ function draw() {
 
         //if (p.exit) particles.splice(i, 1);
     })
-
-    
-
 
 }
 
@@ -394,6 +416,7 @@ function setup() {
 }
 
 let imgs = {
+    'nothing' : null,
     'vectors and streamlines' : null,
     'vectors' : null,
     'streamlines' : null
@@ -412,6 +435,10 @@ function init_bgs() {
 function setup() {
 
     init_bgs();
+
+    clearCanvas(1);
+
+    imgs['nothing'].src = cv.el.toDataURL();
 
     cv.build_grid();
     flowField.render_vectors();
@@ -475,3 +502,34 @@ class Button {
 
 const btnStart = new Button('start', start);
 const btnRandomParticles = new Button('place-random', random_particles);
+const btnToggles = new Button('toggles', (e) => {
+
+    const toggles = Object.keys(state).filter(k => k.slice(0,6) == 'toggle');
+
+    const tg = e.target.dataset.btn;
+    console.log(tg, toggles);
+
+    if (e.target.tagName == 'BUTTON') {
+
+        e.target.classList.toggle('selected');
+
+        state[tg] = !state[tg];
+
+        if (!state[tg]) {
+            // if any toggle was de-selected, then send a "clear" signal once, to clear the canvas in one frame
+            state.clear = true;
+        }
+
+    }
+
+    // if all toggles were de-selected, send the clear signal
+
+    /*
+    const all_toggles_disabled = !toggles.map(k => state[k]).reduce( (p,c) => p + c);
+
+    console.log(all_toggles_disabled);
+
+    if (all_toggles_disabled) state.clear = true;
+    */
+
+})
