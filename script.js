@@ -17,6 +17,7 @@ const state = {
     'toggle: show vectors' : false,
     'toggle: show streamlines' : false,
     'clear' : false,
+    'edges' : 'restart' // 'cross'
 }
 
 class Canvas {
