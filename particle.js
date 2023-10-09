@@ -98,35 +98,36 @@ class Particle {
 
         if (this.x >= this.xmax) {
             this.exit = true;
-            //this.x = m + 1;
+            this.x = m;
             //this.xant = this.x;
         }
 
         if (this.x <= 0) {
             this.exit = true;
-            //this.x = this.xmax - m - 1;
+            this.x = this.xmax - m;
             //this.xant = this.x
         }
 
         if (this.y >= this.ymax) {
             this.exit = true;
-            //this.y = m + 1;
+            this.y = m;
             //this.yant = this.y;
         }
 
         if (this.y <= 0) {
             this.exit = true;
-            //this.y = this.ymax - m - 1;
+            this.y = this.ymax - m;
             //this.yant = this.y;
         }
 
+        /*
         if (this.exit) {
             this.x = this.x0;
             this.y = this.y0;
             this.xant = this.x0;
             this.yant = this.y0;
             this.exit = false;
-        }
+        }*/
 
     }
 
