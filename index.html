@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualization</title>
+    <title>Visualization | Mini-interactives</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;0,800;1,400&family=Poppins:ital,wght@0,200;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -12,72 +12,46 @@
 </head>
 <body>
 
-    <header>
-        
-    </header>
-
-
-
-    <h1><small>Massless Particles Over a </small>Steady Vector Field</h1>
-
-    <p class="subtitle">With Fourth order Runge Kutta integration (RK4)</p>
+    <div class="wrapper-title">
+        <p class="chapeu">DD2257 Visualization</p>
+        <h1>Mini-interactives</h1>
+        <p class="subtitle">A series of interactive mini-applications exploring the contents of the course</p>
+    </div>
 
     <div class="description">
-        <p>
-            A bonus project for the course <a href="https://www.csc.kth.se/~weinkauf/teaching/visualization.html"><strong>DD2257 &mdash; Visualization</strong>, taught by <strong>Tino Weinkauf</strong></a>, at KTH Royal Institute of Technology
-        </p>
 
-        <p>
-            <a href="https://www.tiago.wtf">tiago.wtf</a> | October 2023
-        </p>
     </div>
 
 
-    <div class="wrapper">
-        <div class="controls">
+    <div class="wrapper-mini-interactives">
 
-            <button data-btn="start"></button>
-
-            <button data-btn="place-random">Add more random particles</button>
-
-            <div class="toggles-wrapper" data-btn="toggles">
-                <button class="toggle selected" data-btn="toggle: show vectors">Show vectors</button>
-                <button class="toggle selected" data-btn="toggle: show streamlines">Show streamlines</button>
+        <a href="./flowfield/index.html">
+            <div class="card">
+                <img src="streamlines.png" alt="A visualization of a vector field, with lines showing the streamlines (that is, tangent curves to the vectors of the vector field), and particles moving according to the underlying field.">
+                <p>Streamlines</p>
             </div>
+        </a>
 
-            <div class="mode-wrapper twin-buttons" data-btn="mode">
-                <p>Particle movement</p>
-                <button data-mode="follow" class="mode-btns">Follow</button>
-                <button data-mode="random" class="mode-btns selected">Random</button>
-            </div>
-
-            <div class="edges-wrapper twin-buttons" data-btn="edges">
-                <p>Behavior on the edges</p>
-                <button data-edges="cross" class="edge-btns">Wrap</button>
-                <button data-edges="restart" class="edge-btns selected">Regenerate</button>
-            </div>
-
-            <div class="wrapper-slider">
-                <label for="frame-alpha">Frame alpha: <span data-slider-label="frame-alpha"></span></label>
-                <input data-slider="frame-alpha" type="range" id="frame-alpha" name="frame-alpha" min="0" max="0.5" step="0.01" />
-            </div>
-
-            <div class="wrapper-slider">
-                <label for="particle-speed">Particle speed: <span data-slider-label="particle-speed"></span></label>
-                <input data-slider="particle-speed" type="range" id="particle-speed" name="particle-speed" min="0.1" max="2" step="0.01" />
-            </div>
-
+        <div class="card">
+            <!--<img src="" alt="">-->
+            <div class="img">🚧</div>
+            <p>Scatterplot matrices vs. parallels coordinates</p>
         </div>
-        <canvas></canvas>
+
+        <div class="card">
+            <!--<img src="" alt="">-->
+            <div class="img">🚧</div>
+            <p>Discrete convolution</p>
+        </div>
+
+        <div class="card">
+            <!--<img src="" alt="">-->
+            <div class="img">🚧</div>
+            <p>Asymptotic decider</p>
+        </div>
+
+
     </div>
-
-
-    
-
-    <script src="perlin.js"></script>
-    <script src="flow-field.js"></script>
-    <script src="particle.js"></script>
-    <script src="script.js"></script>
 
 </body>
 </html>
