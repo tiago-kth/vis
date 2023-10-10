@@ -30,7 +30,7 @@ class Particle {
         this.alpha = alpha;
         //this.initial_distance = Math.random() * 10;
         this.arc_length = Math.PI * 2;// Math.random() * Math.PI * 2;
-        this.speed = .25;
+        this.speed = params.PARTICLE_SPEED;
 
         this.r = params.PARTICLE_RADIUS;
 
@@ -83,6 +83,8 @@ class Particle {
         const cell_size = cv.cell_size;
 
         let vx, vy;
+
+        this.speed = params.PARTICLE_SPEED;
 
         this.mode = params.PARTICLES_MODE;
 

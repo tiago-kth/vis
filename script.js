@@ -11,7 +11,8 @@ const params = {
     GRID_COLOR: "#33333350",
     VECTOR_COLOR: "green",
     N_RANDOM: 1000,
-    PARTICLES_MODE: 'random' // 'follow'
+    PARTICLES_MODE: 'random', // 'follow'
+    PARTICLE_SPEED: .5,
 }
 
 const state = {
