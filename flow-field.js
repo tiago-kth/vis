@@ -48,9 +48,29 @@ class FlowField {
 
             for (let j = 0; j < this.J; j++) {
 
-                const v = perlin.get( i/this.I , j/this.J );
+                let vec; /*
 
-                const vec = Vec.fromAngle(Math.PI * v * 4);
+                if (i == 0 || j == 0 || j == this.J - 1 || i == this.I - 1) {
+
+                    const x = i * this.cv.cell_size - this.cv.w / 2;
+                    const y = j * this.cv.cell_size - this.cv.h / 2;
+
+                    const adj = ( y < 0 ) ? 0 : Math.PI;
+
+                    const tg = x / y;
+
+                    const angle = Math.atan(tg) + adj;
+
+                    vec = Vec.fromAngle(angle);
+
+                } else { */
+
+                    const v = perlin.get( i/this.I , j/this.J );
+
+                    vec = Vec.fromAngle(Math.PI * v * 4);
+
+
+                //}
 
                 this.vectorField.push(vec);
 
