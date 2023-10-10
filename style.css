@@ -33,8 +33,14 @@ h1 {
 }
 
 p.subtitle {
-    margin-bottom: 3rem;
-    font-weight: .8rem;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: .8rem;
+    max-width: 300px;
+    margin: 2rem auto;
+    text-align: center;
 }
 
 h1 > small {
@@ -51,7 +57,7 @@ p {
 }
 
 a {
-    color: white;
+    color: inherit;
 }
 
 canvas {
@@ -123,7 +129,16 @@ canvas {
 [data-btn="start"] {
     width: 5rem;
     margin-right: 1rem;
+    border-color: indigo;
+    background-color: indigo;
+    color: white;
 
+}
+
+[data-btn="start"].started {
+    color: var(--tx-color);
+    background-color: white;
+    border-color: currentColor;
 }
 
 [data-btn="start"]::after {
