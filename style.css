@@ -99,6 +99,7 @@ canvas {
 
 .twin-buttons {
     display: flex;
+    margin-top: 1rem;
 }
 
 .twin-buttons > p {
@@ -108,7 +109,7 @@ canvas {
 .twin-buttons > button {
     border: 2px solid var(--tx-color);
     margin: 0;
-    width: 5rem;
+    min-width: 6rem;
 }
 .twin-buttons > button:first-of-type  { border-radius: 1rem 0 0 1rem; }
 .twin-buttons > button:nth-of-type(2) { 

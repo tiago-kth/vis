@@ -584,3 +584,19 @@ const btnModes = new Button('mode', (e) => {
     }
 
 })
+
+const btnEdges = new Button('edges', (e) => {
+
+    if (e.target.tagName == 'BUTTON') {
+
+        clearTwinButtons('edge-btns');
+
+        e.target.classList.add('selected');
+
+        const edge_behavior = e.target.dataset.edges;
+
+        params.EDGES = edge_behavior;
+
+    }
+
+})
