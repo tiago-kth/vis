@@ -164,31 +164,35 @@ class Particle {
     render() {
 
         const m = this.canvas.margin;
+        const r = 4;
+        const lw = r * 2;
 
         const ctx = this.canvas.ctx;
         ctx.save();
         //cv.ctx.strokeStyle = 'cyan';
-        ctx.fillStyle = this.color;//'blue';
-        ctx.lineWidth = 2;
+        ctx.globalAlpha = this.alpha;
+        /*ctx.fillStyle = this.color;//'blue';
+        ctx.lineWidth = lw;
         ctx.beginPath();
-        //cv.ctx.moveTo(m + this.x0, m + this.y0);
+        cv.ctx.moveTo(m + this.xant, m + this.yant);
         //ctx.arc(m + this.x, m + this.y, this.r, 0, this.arc_length);//Math.PI * 2);
-        //cv.ctx.lineTo(m + this.x, m +this.y);
+        cv.ctx.lineTo(m + this.x, m +this.y);
         //ctx.globalAlpha = .3;
         //ctx.arc(m + this.xant, m + this.yant, 2, 0, this.arc_length);
         //cv.ctx.closePath();
         //ctx.fillStyle = "blue";
         //ctx.fill();
-        //ctx.stroke();
-        ctx.globalAlpha = this.alpha;
-        //ctx.beginPath();
-        ctx.arc(m + this.x, m + this.y, 3, 0, this.arc_length);//Math.PI * 2);
+        ctx.closePath();
+        ctx.strokeStyle = '#4B008250';
+        ctx.stroke(); */
+        
+        ctx.beginPath();
+        ctx.fillStyle = '#4B0082';
+        ctx.arc(m + this.x, m + this.y, r, 0, this.arc_length);//Math.PI * 2);
         //ctx.fillStyle = this.color;
+        ctx.closePath();
         ctx.fill();
-        cv.ctx.strokeStyle = this.color;
-        //cv.ctx.filter = "blur(1px)";
-        cv.ctx.stroke();
-        cv.ctx.closePath();
+
         ctx.restore();
         //cv.ctx.stroke();
 
