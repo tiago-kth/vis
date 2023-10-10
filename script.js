@@ -1,7 +1,7 @@
 const params = {
     SPEED_INCREMENT: 100,
     N_PARTICLES: 1,
-    ALPHA: 0.3,
+    ALPHA: 0.1,
     SPREAD: 10,
     PARTICLE_RADIUS: 2,
     MIN_DECAY: 20,
@@ -215,7 +215,7 @@ particles.push(p);
 function draw() {
 
 
-    clearCanvas(0.05); // com esse, deixa um "rastro"
+    //clearCanvas(0.05); // com esse, deixa um "rastro"
     //clearCanvas(1);
 
     //cv.ctx.fill();
@@ -223,6 +223,8 @@ function draw() {
     //flowField.render_vectors();
 
     // recover previously saved img;
+
+    cv.ctx.globalAlpha = params.ALPHA;
 
     if (state["toggle: show streamlines"] && state["toggle: show vectors"]) {
 
@@ -234,7 +236,8 @@ function draw() {
 
         else {
             if (state["toggle: show vectors"]) cv.ctx.drawImage(imgs.vectors, 0 ,0);
-        }
+            else clearCanvas(params.ALPHA);
+        } 
 
     }
 
