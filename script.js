@@ -246,7 +246,7 @@ function draw() {
 
     if (state.clear) {
         console.log('clear!');
-        clearCanvas(1);
+        //clearCanvas(1);
         state.clear = false;
     }
 
