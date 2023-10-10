@@ -562,3 +562,25 @@ const btnToggles = new Button('toggles', (e) => {
     */
 
 })
+
+function clearTwinButtons(className) {
+
+    document.querySelectorAll("." + className).forEach(btn => btn.classList.remove('selected'));
+
+}
+
+const btnModes = new Button('mode', (e) => {
+
+    if (e.target.tagName == 'BUTTON') {
+
+        clearTwinButtons('mode-btns');
+
+        e.target.classList.add('selected');
+
+        const mode = e.target.dataset.mode;
+
+        params.PARTICLES_MODE = mode;
+
+    }
+
+})
