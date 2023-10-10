@@ -125,29 +125,29 @@ class Particle {
 
         if (this.x >= this.xmax) {
             this.exit = true;
-            if (state.edges == 'cross') this.x = m;
+            if (params.EDGES == 'cross') this.x = 0;
             //this.xant = this.x;
         }
 
         if (this.x <= 0) {
             this.exit = true;
-            if (state.edges == 'cross') this.x = this.xmax - m;
+            if (params.EDGES == 'cross') this.x = this.xmax;
             //this.xant = this.x
         }
 
         if (this.y >= this.ymax) {
             this.exit = true;
-            if (state.edges == 'cross') this.y = m;
+            if (params.EDGES == 'cross') this.y = 0;
             //this.yant = this.y;
         }
 
         if (this.y <= 0) {
             this.exit = true;
-            if (state.edges == 'cross') this.y = this.ymax - m;
+            if (params.EDGES == 'cross') this.y = this.ymax;
             //this.yant = this.y;
         }
 
-        if (state.edges == 'restart') {
+        if (params.EDGES == 'restart') {
 
             if (this.exit) {
                 this.x = this.x0;

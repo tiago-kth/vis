@@ -13,13 +13,13 @@ const params = {
     N_RANDOM: 1000,
     PARTICLES_MODE: 'random', // 'follow'
     PARTICLE_SPEED: .5,
+    EDGES : 'restart' // 'cross'
 }
 
 const state = {
     'toggle: show vectors' : false,
     'toggle: show streamlines' : false,
     'clear' : false,
-    'edges' : 'restart' // 'cross'
 }
 
 class Canvas {
