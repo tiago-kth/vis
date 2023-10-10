@@ -10,7 +10,8 @@ const params = {
     BG: "white",
     GRID_COLOR: "#33333350",
     VECTOR_COLOR: "green",
-    N_RANDOM: 1000
+    N_RANDOM: 1000,
+    PARTICLES_MODE: 'random' // 'follow'
 }
 
 const state = {
@@ -22,7 +23,7 @@ const state = {
 
 class Canvas {
 
-    cell_size = 20;
+    cell_size = 40;
     W;
     H;
     w;
@@ -30,7 +31,7 @@ class Canvas {
     I;
     J;
     line = 1;
-    margin = 20;
+    margin = 40;
 
     el;
 
@@ -39,8 +40,8 @@ class Canvas {
     constructor(ref) {
 
         this.el = document.querySelector(ref);
-        this.W = 600;//+window.getComputedStyle(this.el).width.slice(0,-2);
-        this.H = 600;//+window.getComputedStyle(this.el).height.slice(0,-2);
+        this.W = 1200;//+window.getComputedStyle(this.el).width.slice(0,-2);
+        this.H = 1200;//+window.getComputedStyle(this.el).height.slice(0,-2);
 
         this.el.width = this.W;
         this.el.height = this.H;

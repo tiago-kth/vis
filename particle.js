@@ -4,6 +4,8 @@ class Particle {
 
     vx;
     vy;
+    vx0;
+    vy0;
     x;
     y;
     x0;
@@ -19,12 +21,14 @@ class Particle {
     speed;
     exit = false;
     steps = 0;
+    mode = 'random'; // 'follow'
+
 
     constructor(x, y, canvas, alpha) {
 
         this.canvas = canvas;
         this.alpha = alpha;
-        this.initial_distance = Math.random() * 10;
+        //this.initial_distance = Math.random() * 10;
         this.arc_length = Math.PI * 2;// Math.random() * Math.PI * 2;
         this.speed = .25;
 
@@ -47,6 +51,13 @@ class Particle {
         //this.canvas.highlightCell(i,j);
 
         this.getVelocity();
+
+        const random_angle = Math.random()*Math.PI*4;
+
+        const v0 = Vec.fromAngle(random_angle);
+
+        this.vx0 = v0.x;
+        this.vy0 = v0.y;
 
         this.xmax = canvas.w;
         this.ymax = canvas.h;
@@ -71,10 +82,24 @@ class Particle {
 
         const cell_size = cv.cell_size;
 
-        const v = this.getVelocity();
+        let vx, vy;
 
-        const vx = v.x;
-        const vy = v.y;
+        this.mode = params.PARTICLES_MODE;
+
+        if (this.mode == 'random') {
+
+            vx = this.vx0;
+            vy = this.vy0;
+            
+        } else if (this.mode == 'follow') {
+
+            const v = this.getVelocity();
+
+            vx = v.x;
+            vy = v.y;
+
+
+        }
 
         this.vx = vx;
         this.vy = vy;
@@ -121,7 +146,7 @@ class Particle {
         }
 
         if (state.edges == 'restart') {
-            
+
             if (this.exit) {
                 this.x = this.x0;
                 this.y = this.y0;
@@ -155,7 +180,7 @@ class Particle {
         //ctx.stroke();
         ctx.globalAlpha = this.alpha;
         //ctx.beginPath();
-        ctx.arc(m + this.x, m + this.y, 1, 0, this.arc_length);//Math.PI * 2);
+        ctx.arc(m + this.x, m + this.y, 3, 0, this.arc_length);//Math.PI * 2);
         //ctx.fillStyle = this.color;
         ctx.fill();
         cv.ctx.strokeStyle = this.color;
