@@ -59,17 +59,16 @@ class Canvas {
 
         this.ctx = this.el.getContext('2d');
 
-        this.ctx.strokeStyle = params.GRID_COLOR;
-        this.ctx.lineWidth = this.line;
-
-
-
     }
 
     build_grid() {
 
         //let I = 0;
         //let J = 0;
+
+        this.ctx.save();
+        this.ctx.strokeStyle = params.GRID_COLOR;
+        this.ctx.lineWidth = this.line;
 
         for (let i = 0; i < this.I + 1; i++) {
 
@@ -90,6 +89,8 @@ class Canvas {
             //J++
 
         }
+
+        this.ctx.restore();
 
         //this.I = I;
         //this.J = J;
