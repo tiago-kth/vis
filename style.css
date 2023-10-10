@@ -12,6 +12,7 @@ html {
 
 button {
     font-family: inherit;
+    font-size: inherit;
 }
 
 :root {
@@ -43,6 +44,20 @@ canvas {
     border: 3px solid black;
 }
 
+@media (max-width: 620px) {
+
+
+    .controls {
+        font-size: .8rem;
+    }
+
+    canvas {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+    }
+}
+
 .wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -71,7 +86,7 @@ canvas {
 }
 
 .toggle, button {
-    padding: .5em;
+    padding: .5em .75em;
     border-radius: .5em;
     background-color: white;
     border: 2px solid var(--tx-color);
@@ -111,9 +126,9 @@ canvas {
     margin: 0;
     min-width: 6rem;
 }
-.twin-buttons > button:first-of-type  { border-radius: 1rem 0 0 1rem; }
+.twin-buttons > button:first-of-type  { border-radius: 2rem 0 0 2rem; }
 .twin-buttons > button:nth-of-type(2) { 
-    border-radius: 0 1rem 1rem 0; 
+    border-radius: 0 2rem 2rem 0; 
     border-left: none;
 }
 
