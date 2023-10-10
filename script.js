@@ -198,9 +198,11 @@ flowField.make_random_field();
 
 function clearCanvas(alpha) {
 
+    //cv.ctx.save();
     cv.ctx.fillStyle = params.BG;
     cv.ctx.globalAlpha = alpha;
     cv.ctx.fillRect(0,0,cv.W,cv.H);
+    //cv.ctx.restore();
     
 }
 
