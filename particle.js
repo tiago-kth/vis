@@ -187,7 +187,7 @@ class Particle {
         ctx.stroke(); */
         
         ctx.beginPath();
-        ctx.fillStyle = '#4B0082';
+        ctx.fillStyle = params.PARTICLE_COLOR;
         ctx.arc(m + this.x, m + this.y, r, 0, this.arc_length);//Math.PI * 2);
         //ctx.fillStyle = this.color;
         ctx.closePath();

@@ -129,6 +129,8 @@ class Streamline {
 
     constructor(x0, y0, step_size, canvas, vectorField, max_steps) {
 
+        this.color = params.STREAMLINES_COLOR;
+
         x0 = x0 - canvas.margin;
         y0 = y0 - canvas.margin;
 

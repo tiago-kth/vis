@@ -6,10 +6,11 @@ const params = {
     PARTICLE_RADIUS: 2,
     MIN_DECAY: 20,
     DECAY_INCREMENT: 100,
-    PARTICLE_COLOR: 'firebrick',
-    BG: "white",
-    GRID_COLOR: "#33333350",
-    VECTOR_COLOR: "green",
+    PARTICLE_COLOR: 'indigo',
+    STREAMLINES_COLOR: '#BF2C62',
+    BG: "white",//"white",
+    GRID_COLOR: "lightgray",//"#33333350",
+    VECTOR_COLOR: "darkgreen",
     N_RANDOM: 1000,
     PARTICLES_MODE: 'random', // 'follow'
     PARTICLE_SPEED: .5,
@@ -17,9 +18,10 @@ const params = {
 }
 
 const state = {
-    'toggle: show vectors' : false,
-    'toggle: show streamlines' : false,
+    'toggle: show vectors' : true,
+    'toggle: show streamlines' : true,
     'clear' : false,
+    started : false
 }
 
 class Canvas {
@@ -411,6 +413,16 @@ function start() {
     requestID = window.requestAnimationFrame(animate);
 }
 
+function play() {
+
+    if (state.started) stop();
+    else start();
+
+    state.started = !state.started;
+
+    this.classList.toggle('started');
+}
+
 //draw_first();
 //start();
 
@@ -470,6 +482,13 @@ function setup() {
 
     clearCanvas(1);
 
+    cv.build_grid();
+    flowField.render_vectors();
+    reset_streams();
+    draw_streams();
+
+
+
 }
 
 function new_start() {
@@ -481,7 +500,7 @@ function new_start() {
 }
 
 function alternate_start() {
-    setup();
+    //setup();
     //generate_seeds();
     //generate_streams();
     //generate_particles();
@@ -489,6 +508,8 @@ function alternate_start() {
     //saveImg();
     start();
 }
+
+setup();
 
 // controls
 
@@ -508,7 +529,7 @@ class Button {
 
 }
 
-const btnStart = new Button('start', start);
+const btnStart = new Button('start', play);
 const btnRandomParticles = new Button('place-random', random_particles);
 const btnToggles = new Button('toggles', (e) => {
 
