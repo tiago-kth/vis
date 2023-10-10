@@ -661,3 +661,4 @@ class Slider {
 }
 
 const frameAlphaSlider = new Slider('frame-alpha', 'ALPHA');
+const particleSpeedSlider = new Slider('particle-speed', 'PARTICLE_SPEED');
