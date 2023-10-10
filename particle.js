@@ -97,9 +97,19 @@ class Particle {
 
             const v = this.getVelocity();
 
-            vx = v.x;
-            vy = v.y;
+            if (v) {
 
+                vx = v.x;
+                vy = v.y;
+
+            } else {
+
+                console.log(this.x, this.y, this.xant, this.yant, v, this.getCell());
+
+                vx = this.vx0;
+                vy = this.vy0;
+
+            }
 
         }
 
@@ -125,26 +135,29 @@ class Particle {
 
         if (this.x >= this.xmax) {
             this.exit = true;
-            if (params.EDGES == 'cross') this.x = 0;
+            if (params.EDGES == 'cross') this.x = 1;
             //this.xant = this.x;
-        }
+        } else {
 
-        if (this.x <= 0) {
-            this.exit = true;
-            if (params.EDGES == 'cross') this.x = this.xmax;
-            //this.xant = this.x
+            if (this.x <= 0) {
+                this.exit = true;
+                if (params.EDGES == 'cross') this.x = this.xmax - 1;
+                //this.xant = this.x
+            }
         }
 
         if (this.y >= this.ymax) {
             this.exit = true;
-            if (params.EDGES == 'cross') this.y = 0;
+            if (params.EDGES == 'cross') this.y = 1;
             //this.yant = this.y;
-        }
-
-        if (this.y <= 0) {
+        } else {
+            
+            if (this.y <= 0) {
             this.exit = true;
-            if (params.EDGES == 'cross') this.y = this.ymax;
+            if (params.EDGES == 'cross') this.y = this.ymax - 1;
             //this.yant = this.y;
+            }
+
         }
 
         if (params.EDGES == 'restart') {
