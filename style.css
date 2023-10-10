@@ -4,7 +4,7 @@
 
 html {
     background-color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
     font-weight: 100;
     overflow-x: hidden;
     color: #333;
@@ -13,6 +13,7 @@ html {
 button {
     font-family: inherit;
     font-size: inherit;
+    font-weight: 300;
 }
 
 :root {
@@ -93,6 +94,7 @@ canvas {
 .controls {
 
     padding: 1rem;
+    font-size: .9rem;
 
 }
 
@@ -120,6 +122,7 @@ canvas {
 
 [data-btn="start"] {
     width: 5rem;
+    margin-right: 1rem;
 
 }
 
