@@ -600,3 +600,64 @@ const btnEdges = new Button('edges', (e) => {
     }
 
 })
+
+function updateSlider(slider, param) {
+
+    const label = document.querySelector(`[data-slider-label="${slider}"]`);
+    const sliderEl = document.querySelector(`[data-slider="${slider}"]`);
+
+    label.innerHTML = params[param];
+    sliderEl.value = params[param];
+
+}
+
+class Slider {
+
+    el;
+    ref;
+    label;
+    param_name;
+
+    constructor(slider_ref, param_name) {
+
+        this.ref = slider_ref;
+        this.param_name = param_name;
+
+        this.label = document.querySelector(`[data-slider-label="${slider_ref}"]`);
+        this.el = document.querySelector(`[data-slider="${slider_ref}"]`);
+
+        this.updateSlider();
+
+        this.el.addEventListener('change', e => this.updateParam(this));
+
+    }
+
+    updateSlider() {
+
+        console.log(this.label, params[this.param_name]);
+
+        this.updateLabel();
+        this.el.value = params[this.param_name];
+
+    }
+
+    updateLabel() {
+
+        this.label.innerHTML = Number.parseFloat(params[this.param_name]).toFixed(2);
+
+    }
+
+    updateParam(obj) {
+
+        console.log(this, obj);
+
+        params[obj.param_name] = obj.el.value;
+
+        obj.updateLabel();
+
+
+    }
+
+}
+
+const frameAlphaSlider = new Slider('frame-alpha', 'ALPHA');

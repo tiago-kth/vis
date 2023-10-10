@@ -131,3 +131,12 @@ canvas {
         box-shadow: 0 0 50px 0px indigo;
     }
 }
+
+.wrapper-slider {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.wrapper-slider label {
+    margin-right: 1rem;
+}
