@@ -23,8 +23,26 @@ body {
     overflow-x: hidden;
 }
 
-h1 {
+h1, p.subtitle {
     text-align: center;
+}
+
+h1 {
+    margin-bottom: 0;
+}
+
+p.subtitle {
+    margin-bottom: 3rem;
+    font-weight: .8rem;
+}
+
+h1 > small {
+    display: block;
+    font-size: .8rem;
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin: .5em;
+    color: var(--tx-color);
 }
 
 p {
@@ -63,6 +81,7 @@ canvas {
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .wrapper > * {
