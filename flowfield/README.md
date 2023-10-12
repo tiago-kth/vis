@@ -1,13 +1,15 @@
 # Simulation
 
-A particle simulation over a flow-field.
+A particle simulation over a vector-field.
 
-ok Make particles initially with random speeds, and add a "follow button".
+## To-do
 
-Use bilinear interpolation to get the velocity vectors, instead of just using the current grid cell vector.
+[ok] Make particles initially with random velocities, and add a "follow button".
 
-Change vectors direction when dragging
+Use bilinear interpolation to get the velocity vectors, instead of just using the current grid cell vector (nearest-neighbor).
+
+Add interactivity: change vectors directions when user drags the mouse over the field
 
 Better streamline placement
 
-Edges
+Constraints on edge vectors?
